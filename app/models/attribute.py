@@ -57,6 +57,8 @@ class Attribute:
         self.__standard_deviation = 0
 
     def calc(self, data):
+
+        unique = set()
         total = 0
         count = 0
         empty = 0
@@ -71,6 +73,7 @@ class Attribute:
                 empty += 1
                 continue
 
+            unique.add(item)
             total += item
 
             if item > maximum:
@@ -81,6 +84,7 @@ class Attribute:
         self.__total_count = count
         self.__min = minimum
         self.__max = maximum
+        self.__cardinality = len(unique)
         self.__average = round(total / count, 2)
         self.__lack_of_values_p = get_percentage(count, empty)
 

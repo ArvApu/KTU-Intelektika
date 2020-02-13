@@ -28,3 +28,6 @@ class DataHolder:
 
     def get_by_key(self, key):
         return self.__data[key]
+
+    def get_keys(self):
+        return self.__data.keys()

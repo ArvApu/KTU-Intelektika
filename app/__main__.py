@@ -5,58 +5,28 @@
 import csv
 from models.dataHolder import DataHolder
 from models.attribute import Attribute
+from models.attributeManager import AttributeManager
 
 # Constants
-FILE_NAME = "song_data.csv"
+IMPORT_FILE_NAME = "song_data.csv"
+EXPORT_FILE_NAME = "results_export.csv"
 
 
 def main():
-    data_holder = DataHolder(get_header(FILE_NAME))
-    read_csv(data_holder)
+    data_holder = DataHolder(get_header(IMPORT_FILE_NAME))
+    read_csv(IMPORT_FILE_NAME, data_holder)
 
-    attribute = Attribute()
+    attribute_manager = AttributeManager()
+    attributes = data_holder.get_keys()
+    for attribute in attributes:
+        if attribute == 'song_name':
+            continue
+        attribute_manager.add_attribute(
+            Attribute(attribute, data_holder.get_by_key(attribute))
+        )
 
-    attribute.calc(data_holder.get_by_key('song_duration_ms'))
-    attribute.print('song_duration_ms')
 
-    attribute.calc(data_holder.get_by_key('song_popularity'))
-    attribute.print('song_popularity')
-
-    attribute.calc(data_holder.get_by_key('acousticness'))
-    attribute.print('acousticness')
-
-    attribute.calc(data_holder.get_by_key('danceability'))
-    attribute.print('danceability')
-
-    attribute.calc(data_holder.get_by_key('song_duration_ms'))
-    attribute.print('energy')
-
-    attribute.calc(data_holder.get_by_key('instrumentalness'))
-    attribute.print('instrumentalness')
-
-    attribute.calc(data_holder.get_by_key('key'))
-    attribute.print('key')
-
-    attribute.calc(data_holder.get_by_key('liveness'))
-    attribute.print('liveness')
-
-    attribute.calc(data_holder.get_by_key('loudness'))
-    attribute.print('loudness')
-
-    attribute.calc(data_holder.get_by_key('audio_mode'))
-    attribute.print('audio_mode')
-
-    attribute.calc(data_holder.get_by_key('speechiness'))
-    attribute.print('speechiness')
-
-    attribute.calc(data_holder.get_by_key('tempo'))
-    attribute.print('tempo')
-
-    attribute.calc(data_holder.get_by_key('time_signature'))
-    attribute.print('time_signature')
-
-    attribute.calc(data_holder.get_by_key('audio_valence'))
-    attribute.print('audio_valence')
+    attribute_manager.export_csv(EXPORT_FILE_NAME)
 
 
 def get_header(filename):
@@ -65,8 +35,8 @@ def get_header(filename):
         return next(csv_reader)
 
 
-def read_csv(data_holder):
-    with open(FILE_NAME) as csv_file:
+def read_csv(filename, data_holder):
+    with open(filename) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         # Skip header
         next(csv_reader)

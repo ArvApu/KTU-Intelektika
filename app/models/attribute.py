@@ -43,29 +43,20 @@ def stddev(data):
 
 
 class Attribute:
-
-    def __init__(self):
-        self.__total_count = 0
-        self.__lack_of_values_p = 0
-        self.__cardinality = 0
-        self.__min = 0
-        self.__max = 0
-        self.__lower_quartile = 0
-        self.__upper_quartile = 0
-        self.__median = 0
-        self.__average = 0
-        self.__standard_deviation = 0
+    def __init__(self, name, data):
+        self.__name = name
+        self.calc(data)
 
     def calc(self, data):
-
+        # Initialize variables
         unique = set()
         total = 0
         count = 0
         empty = 0
-
         minimum = data[0]
         maximum = data[0]
 
+        # Do counting for basic calculations
         for item in data:
             count += 1
 
@@ -81,6 +72,7 @@ class Attribute:
             if item < minimum:
                 minimum = item
 
+        # Set properties by founded information
         self.__total_count = count
         self.__min = minimum
         self.__max = maximum
@@ -88,14 +80,14 @@ class Attribute:
         self.__average = round(total / count, 2)
         self.__lack_of_values_p = get_percentage(count, empty)
 
+        # Calculate more difficult values
         data = list(filter(None, data))
         self.__standard_deviation = stddev(data)
         if count - empty > 2:
             self.__calc_quartiles(data)
 
-    def print(self, name):
-        print(f"{name}\n")
-
+    def print(self):
+        print(f"{self.__name}\n")
         print(f"Total count: {self.__total_count}")
         print(f"Lack of values percentage: {self.__lack_of_values_p}%")
         print(f"Cardinality: {self.__cardinality}")
@@ -108,6 +100,20 @@ class Attribute:
         print(f"Standard deviation: {self.__standard_deviation}")
         print("\n-------------------------------------------\n")
 
+    def get_values(self):
+        return [
+            self.__total_count,
+            self.__lack_of_values_p,
+            self.__cardinality,
+            self.__min,
+            self.__max,
+            self.__lower_quartile,
+            self.__upper_quartile,
+            self.__average,
+            self.__median,
+            self.__standard_deviation,
+        ]
+
     def __calc_quartiles(self, data):
         data = sorted(data)
         median, median_indices = find_median(data)
@@ -117,3 +123,9 @@ class Attribute:
         self.__lower_quartile = q1
         self.__median = median
         self.__upper_quartile = q2
+
+    def get_name(self):
+        return self.__name
+
+    def get_values_and_name(self):
+        return [self.get_name()] + self.get_values()

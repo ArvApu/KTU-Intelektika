@@ -12,7 +12,7 @@ from models.attributeManager import AttributeManager
 IMPORT_FILE_NAME = "song_data.csv"
 EXPORT_FILE_NAME = "results_export.csv"
 ID_ATTRIBUTE_NAME = 'song_name'
-DISCRETE_ATTRIBUTES = ['audio_modex']
+DISCRETE_ATTRIBUTES = ['audio_mode', 'time_signature']
 
 
 def main():

@@ -7,11 +7,12 @@ class Attribute:
         self.__lack_of_values_p = 0
 
     @staticmethod
-    def __get_percentage(total, part):
+    def get_percentage(total, part):
         if total < 0:
             return 0
 
-        return (100 * float(part)) / float(total)
+        x = (100 * float(part)) / float(total)
+        return round(x, 2)
 
     def get_values(self):
         return [
@@ -36,4 +37,4 @@ class Attribute:
         self.__cardinality = cardinality
 
     def set_lack_of_values_p(self, total, part):
-        self.__lack_of_values_p = self.__get_percentage(total, part)
+        self.__lack_of_values_p = self.get_percentage(total, part)

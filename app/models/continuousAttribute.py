@@ -59,11 +59,11 @@ class ContinuousAttribute(Attribute):
 
         # Do counting for basic calculations
         for item in data:
-            count += 1
-
             if item == '' or item is None:
                 empty += 1
                 continue
+
+            count += 1
 
             unique.add(item)
             total += item

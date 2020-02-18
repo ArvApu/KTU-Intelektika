@@ -1,5 +1,7 @@
 import csv
 
+from models.continuousAttribute import ContinuousAttribute
+from models.discreteAttribute import DiscreteAttribute
 
 class AttributeManager:
 
@@ -22,6 +24,8 @@ class AttributeManager:
             writer = csv.writer(employee_file, delimiter=',')
             writer.writerow(header)
             for attribute in self.__attributes:
+                if isinstance(attribute, DiscreteAttribute):
+                    continue
                 writer.writerow(attribute.get_values_and_name())
 
     def get_attribute_names(self):

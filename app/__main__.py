@@ -4,12 +4,15 @@
 
 import csv
 from models.dataHolder import DataHolder
-from models.attribute import Attribute
+from models.continuousAttribute import ContinuousAttribute
+from models.discreteAttribute import DiscreteAttribute
 from models.attributeManager import AttributeManager
 
 # Constants
 IMPORT_FILE_NAME = "song_data.csv"
 EXPORT_FILE_NAME = "results_export.csv"
+ID_ATTRIBUTE_NAME = 'song_name'
+DISCRETE_ATTRIBUTES = ['audio_modex']
 
 
 def main():
@@ -19,12 +22,12 @@ def main():
     attribute_manager = AttributeManager()
     attributes = data_holder.get_keys()
     for attribute in attributes:
-        if attribute == 'song_name':
+        if attribute == ID_ATTRIBUTE_NAME:
             continue
-        attribute_manager.add_attribute(
-            Attribute(attribute, data_holder.get_by_key(attribute))
-        )
 
+        attribute_manager.add_attribute(
+            resolve_attribute(attribute, data_holder.get_by_key(attribute))
+        )
 
     attribute_manager.export_csv(EXPORT_FILE_NAME)
 
@@ -42,6 +45,13 @@ def read_csv(filename, data_holder):
         next(csv_reader)
         for row in csv_reader:
             data_holder.extract_row(row)
+
+
+def resolve_attribute(name, data):
+    if name in DISCRETE_ATTRIBUTES:
+        return DiscreteAttribute(name, data)
+
+    return ContinuousAttribute(name, data)
 
 
 if __name__ == "__main__":

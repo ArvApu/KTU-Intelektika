@@ -31,3 +31,6 @@ class DataHolder:
 
     def get_keys(self):
         return self.__data.keys()
+
+    def del_by_key(self, key):
+        del self.__data[key]

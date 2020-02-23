@@ -26,9 +26,9 @@ def extra(args, data_holder):
     if args.histograms_enabled:
         HistogramGUI(data_holder).run()
     if args.scatter_matrix_enabled:
-        ScatterMatrix(data_holder.get_data())
+        ScatterMatrix(data_holder.get_without(config.DISCRETE_ATTRIBUTES))  # Scatter matrix contains only continuous
     if args.correlation_matrix_enabled:
-        CorrelationMatrix(data_holder.get_data())
+        CorrelationMatrix(data_holder.get_without(config.DISCRETE_ATTRIBUTES))  # Corr matrix contains only continuous
 
 
 def get_header(filename):

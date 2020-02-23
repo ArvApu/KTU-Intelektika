@@ -14,7 +14,6 @@ from models.correlationMatrix import CorrelationMatrix
 
 
 def main():
-    print()
     data_holder = DataHolder(get_header(config.IMPORT_FILE_NAME))
     read_csv(config.IMPORT_FILE_NAME, data_holder)
     export_data(data_holder)

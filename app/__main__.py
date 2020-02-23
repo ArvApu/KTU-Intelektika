@@ -9,6 +9,7 @@ from models.discreteAttribute import DiscreteAttribute
 from models.attributeManager import AttributeManager
 from models.histogramGUI import HistogramGUI
 from models.scatterMatrix import ScatterMatrix
+from models.correlationMatrix import CorrelationMatrix
 
 # Constants
 IMPORT_FILE_NAME = "./data/wine.csv"
@@ -24,6 +25,7 @@ def main():
     data_holder.del_by_key(ID_ATTRIBUTE_NAME)
     HistogramGUI(data_holder).run()
     ScatterMatrix(data_holder.get_data())
+    CorrelationMatrix(data_holder.get_data())
 
 
 def get_header(filename):

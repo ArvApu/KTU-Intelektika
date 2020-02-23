@@ -23,7 +23,7 @@ def main():
     export_data(data_holder)
     data_holder.del_by_key(ID_ATTRIBUTE_NAME)
     HistogramGUI(data_holder).run()
-    ScatterMatrix(data_holder.get_without(['audio_mode', 'time_signature']))
+    ScatterMatrix(data_holder.get_without(DISCRETE_ATTRIBUTES))
 
 
 def get_header(filename):

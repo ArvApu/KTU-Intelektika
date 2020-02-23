@@ -11,8 +11,11 @@ load_dotenv(dotenv_path=env_path)
 # Import file name inching path
 IMPORT_FILE_NAME = os.getenv('IMPORT_FILE_NAME')
 
-# Export file name inching path
-EXPORT_FILE_NAME = os.getenv('EXPORT_FILE_NAME')
+# Export file name inching path of continuos attributes
+EXPORT_CONTINUOUS_FILE_NAME = os.getenv('EXPORT_CONTINUOUS_FILE_NAME')
+
+# Export file name inching path of discrete attributes
+EXPORT_DISCRETE_FILE_NAME = os.getenv('EXPORT_DISCRETE_FILE_NAME')
 
 # Name of ID attribute, empty if there is no such attribute
 ID_ATTRIBUTE_NAME = os.getenv('ID_ATTRIBUTE_NAME')

@@ -64,7 +64,8 @@ def export_data(data_holder):
             resolve_attribute(attribute, data_holder.get_by_key(attribute))
         )
 
-    attribute_manager.export_csv(config.EXPORT_FILE_NAME)
+    attribute_manager.export_csv_continuous(config.EXPORT_CONTINUOUS_FILE_NAME)
+    attribute_manager.export_csv_discrete(config.EXPORT_DISCRETE_FILE_NAME)
 
 
 if __name__ == "__main__":

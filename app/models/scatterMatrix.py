@@ -10,5 +10,5 @@ class ScatterMatrix:
         data_matrix = np.transpose(data_matrix)
 
         df = pd.DataFrame(data_matrix, columns=data_dict.keys())
-        scatter_matrix(df, alpha=0.4, figsize=(19, 19), diagonal='hist', c='blue', hist_kwds={'color': ['red']})
+        scatter_matrix(df, alpha=0.4, figsize=(19, 19), diagonal='hist', c='blue', hist_kwds={'color': ['red']}, grid=True)
         plt.show()

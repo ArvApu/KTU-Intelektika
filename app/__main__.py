@@ -11,7 +11,7 @@ from models.histogramGUI import HistogramGUI
 from models.scatterMatrix import ScatterMatrix
 
 # Constants
-IMPORT_FILE_NAME = "song_data_bst.csv"
+IMPORT_FILE_NAME = "./data/song_data_bst_min.csv"
 EXPORT_FILE_NAME = "results_export.csv"
 ID_ATTRIBUTE_NAME = 'song_name'
 DISCRETE_ATTRIBUTES = ['audio_mode', 'time_signature']

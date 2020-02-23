@@ -14,13 +14,21 @@ from models.correlationMatrix import CorrelationMatrix
 
 
 def main():
+    args = config.arguments()
     data_holder = DataHolder(get_header(config.IMPORT_FILE_NAME))
     read_csv(config.IMPORT_FILE_NAME, data_holder)
     export_data(data_holder)
     data_holder.del_by_key(config.ID_ATTRIBUTE_NAME)
-    HistogramGUI(data_holder).run()
-    ScatterMatrix(data_holder.get_data())
-    CorrelationMatrix(data_holder.get_data())
+    extra(args, data_holder)
+
+
+def extra(args, data_holder):
+    if args.histograms_enabled:
+        HistogramGUI(data_holder).run()
+    if args.scatter_matrix_enabled:
+        ScatterMatrix(data_holder.get_data())
+    if args.correlation_matrix_enabled:
+        CorrelationMatrix(data_holder.get_data())
 
 
 def get_header(filename):

@@ -7,11 +7,11 @@ from models.dataHolder import DataHolder
 from models.continuousAttribute import ContinuousAttribute
 from models.discreteAttribute import DiscreteAttribute
 from models.attributeManager import AttributeManager
-from models.gui import GUI
-
+from models.histogramGUI import HistogramGUI
+from models.scatterMatrix import ScatterMatrix
 
 # Constants
-IMPORT_FILE_NAME = "song_data.csv"
+IMPORT_FILE_NAME = "song_data_bst.csv"
 EXPORT_FILE_NAME = "results_export.csv"
 ID_ATTRIBUTE_NAME = 'song_name'
 DISCRETE_ATTRIBUTES = ['audio_mode', 'time_signature']
@@ -22,7 +22,8 @@ def main():
     read_csv(IMPORT_FILE_NAME, data_holder)
     export_data(data_holder)
     data_holder.del_by_key(ID_ATTRIBUTE_NAME)
-    GUI(data_holder).run()
+    HistogramGUI(data_holder).run()
+    ScatterMatrix(data_holder.get_without(['audio_mode', 'time_signature']))
 
 
 def get_header(filename):

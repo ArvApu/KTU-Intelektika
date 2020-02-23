@@ -18,7 +18,7 @@ def calculate(data, name, i):
     plt.show()
 
 
-class GUI(tk.Frame):
+class HistogramGUI(tk.Frame):
     def __init__(self, data):
         main_window = tk.Tk()
         main_window.title('Histograms')
@@ -32,7 +32,6 @@ class GUI(tk.Frame):
             # Initialize widgets
             button = tk.Button(self, text=attribute, command=lambda x=attribute, j=i: calculate(data.get_by_key(x), x, j))
             button.pack(side="top", pady=(10, 10))
-            i = i + 1
 
     def run(self):
         self.mainloop()

@@ -34,3 +34,10 @@ class DataHolder:
 
     def del_by_key(self, key):
         del self.__data[key]
+
+    def get_without(self, keys):
+        data = self.__data
+        for key in keys:
+            del data[key]
+
+        return data

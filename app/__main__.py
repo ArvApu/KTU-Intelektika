@@ -11,10 +11,10 @@ from models.histogramGUI import HistogramGUI
 from models.scatterMatrix import ScatterMatrix
 
 # Constants
-IMPORT_FILE_NAME = "./data/song_data_bst_min.csv"
+IMPORT_FILE_NAME = "./data/wine.csv"
 EXPORT_FILE_NAME = "results_export.csv"
-ID_ATTRIBUTE_NAME = 'song_name'
-DISCRETE_ATTRIBUTES = ['audio_mode', 'time_signature']
+ID_ATTRIBUTE_NAME = ''
+DISCRETE_ATTRIBUTES = ['quality']
 
 
 def main():
@@ -23,7 +23,7 @@ def main():
     export_data(data_holder)
     data_holder.del_by_key(ID_ATTRIBUTE_NAME)
     HistogramGUI(data_holder).run()
-    ScatterMatrix(data_holder.get_without(DISCRETE_ATTRIBUTES))
+    ScatterMatrix(data_holder.get_data())
 
 
 def get_header(filename):

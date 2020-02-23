@@ -33,11 +33,18 @@ class DataHolder:
         return self.__data.keys()
 
     def del_by_key(self, key):
+        if key not in self.__data:
+            return
         del self.__data[key]
 
     def get_without(self, keys):
         data = self.__data
         for key in keys:
+            if key not in data:
+                continue
             del data[key]
 
         return data
+
+    def get_data(self):
+        return self.__data

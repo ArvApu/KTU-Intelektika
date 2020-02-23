@@ -24,7 +24,7 @@ class ScatterMatrix:
 
         df = pd.DataFrame(data_matrix, columns=data_dict.keys())
         axs = scatter_matrix(df, alpha=0.4, figsize=(19, 19), diagonal='hist', c='blue',
-                             hist_kwds={'color': ['red']}, grid=True)
+                             hist_kwds={'color': ['red']})
 
         rotate_labels(axs,len(df.columns))
 

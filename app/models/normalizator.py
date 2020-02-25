@@ -21,4 +21,4 @@ class Normalizator:
 
     def to_file(self, filename):
         df = pd.DataFrame(self.__data)
-        df.to_csv(filename, encoding='utf-8', index=False, float_format='%.3f')
+        df.to_csv(filename, encoding='utf-8', index=False, float_format='%.4f')

@@ -17,6 +17,8 @@ EXPORT_CONTINUOUS_FILE_NAME = os.getenv('EXPORT_CONTINUOUS_FILE_NAME')
 # Export file name inching path of discrete attributes
 EXPORT_DISCRETE_FILE_NAME = os.getenv('EXPORT_DISCRETE_FILE_NAME')
 
+EXPORT_NORMALIZED_FILE_NAME = os.getenv('EXPORT_NORMALIZED_FILE_NAME')
+
 # Name of ID attribute, empty if there is no such attribute
 ID_ATTRIBUTE_NAME = os.getenv('ID_ATTRIBUTE_NAME')
 

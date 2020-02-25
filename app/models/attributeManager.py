@@ -21,8 +21,8 @@ class AttributeManager:
                   'Maksimali reikšmė', '1-asis  kvartilis', '3-iasis  kvartilis', 'Vidurkis', 'Mediana',
                   'Standartinis nuokrypis']
 
-        with open(filename, mode='w') as employee_file:
-            writer = csv.writer(employee_file, delimiter=',')
+        with open(filename, mode='w') as f:
+            writer = csv.writer(f, delimiter=',')
             writer.writerow(header)
             for attribute in self.__attributes:
                 if isinstance(attribute, DiscreteAttribute):
@@ -33,8 +33,8 @@ class AttributeManager:
         header = ['Atributo pavadinimas', 'Kiekis', 'Trūkstamos reikšmės, %', 'Kardinalumas', 'Moda',
                   'Modos dažnumas', 'Moda %', '2-oji Moda', '2-osios modos dažnumas', '2-oji Moda %']
 
-        with open(filename, mode='w') as employee_file:
-            writer = csv.writer(employee_file, delimiter=',')
+        with open(filename, mode='w') as f:
+            writer = csv.writer(f, delimiter=',')
             writer.writerow(header)
             for attribute in self.__attributes:
                 if isinstance(attribute, ContinuousAttribute):

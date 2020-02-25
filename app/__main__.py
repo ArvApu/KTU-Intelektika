@@ -11,6 +11,7 @@ from models.attributeManager import AttributeManager
 from models.histogramGUI import HistogramGUI
 from models.scatterMatrix import ScatterMatrix
 from models.correlationMatrix import CorrelationMatrix
+from models.normalizator import Normalizator
 
 
 def main():
@@ -20,6 +21,7 @@ def main():
     export_data(data_holder)
     data_holder.del_by_key(config.ID_ATTRIBUTE_NAME)
     extra(args, data_holder)
+    normalize(data_holder)
 
 
 def extra(args, data_holder):
@@ -29,6 +31,12 @@ def extra(args, data_holder):
         ScatterMatrix(data_holder.get_without(config.DISCRETE_ATTRIBUTES))  # Scatter matrix contains only continuous
     if args.correlation_matrix_enabled:
         CorrelationMatrix(data_holder.get_without(config.DISCRETE_ATTRIBUTES))  # Corr matrix contains only continuous
+
+
+def normalize(data_holder):
+    normalizator = Normalizator(data_holder.get_without(config.DISCRETE_ATTRIBUTES))
+    normalizator.normalize()
+    normalizator.to_file(config.EXPORT_NORMALIZED_FILE_NAME)
 
 
 def get_header(filename):

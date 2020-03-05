@@ -2,11 +2,26 @@
 # Module: P176B101 Intelektikos pagrindai
 # Task: LAB2.
 
+import csv
+from models.yearSunSpotGraph import YearSunSpotGraph
+
 
 def main():
-    f = open("./data/sunspot.txt", "r")
-    contents = f.read()
-    print(contents)
+    year, sun_activity_days = get_data()
+    YearSunSpotGraph(year, sun_activity_days)
+
+
+def get_data():
+    year = []
+    sun_activity_days = []
+
+    with open("./data/sunspot.txt", "r") as f:
+        for line in csv.reader(f, delimiter="\t"):
+            year.append(line[0])
+            sun_activity_days.append(line[1])
+
+    return year, sun_activity_days
+
 
 if __name__ == "__main__":
     main()

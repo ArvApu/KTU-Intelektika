@@ -17,8 +17,8 @@ def get_data():
 
     with open("./data/sunspot.txt", "r") as f:
         for line in csv.reader(f, delimiter="\t"):
-            year.append(line[0])
-            sun_activity_days.append(line[1])
+            year.append(int(line[0]))
+            sun_activity_days.append(int(line[1]))
 
     return year, sun_activity_days
 

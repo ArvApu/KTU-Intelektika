@@ -26,11 +26,12 @@ e = T - Ts; % prognozes klaidos vekotrius
 plot_forecast_error(e, sunspot);
 
 hist_forecast_error(e);
-mse_value = mse(e); % Average squared forecast error value
+mse_value = mse(e); % average squared forecast error value
+mad_value = mad(e); % median absolute deviation
 
 function plot_sunspots(sunspot)
     figure(1);
-    plot(sunspot(:,1),sunspot(:,2),'r-*');
+    plot(sunspot(:,1),sunspot(:,2),'g-*');
 
     grid on;
     
@@ -42,7 +43,7 @@ end
 
 function plot_sunspots_3d(P, T)
     figure(2);
-    plot3(P(1,:), P(2,:), T, 'go');
+    plot3(P(1,:), P(2,:), T, 'mo');
     
     grid on;
     
@@ -99,7 +100,7 @@ end
 
 function plot_forecast_error(e, sunspot)
     figure(5);
-    plot(sunspot(3:315), e, 'm-o');
+    plot(sunspot(3:315), e, 'r-x');
     
     grid on;
 
